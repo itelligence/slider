@@ -20224,7 +20224,8 @@
 	  tipFormatter: _react2['default'].PropTypes.func,
 	  dots: _react2['default'].PropTypes.bool,
 	  range: _react2['default'].PropTypes.bool,
-	  allowCross: _react2['default'].PropTypes.bool
+	  allowCross: _react2['default'].PropTypes.bool,
+	  tooltipAlwaysVisible: _react2['default'].PropTypes.bool
 	};
 	
 	Slider.defaultProps = {
@@ -22562,7 +22563,8 @@
 	  tipFormatter: _react2['default'].PropTypes.func,
 	  value: _react2['default'].PropTypes.number,
 	  dragging: _react2['default'].PropTypes.bool,
-	  noTip: _react2['default'].PropTypes.bool
+	  noTip: _react2['default'].PropTypes.bool,
+	  tooltipAlwaysVisible: _react2['default'].PropTypes.bool
 	};
 	module.exports = exports['default'];
 

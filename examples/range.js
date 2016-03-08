@@ -110,6 +110,16 @@ webpackJsonp([1],{
 	    React.createElement(
 	      'p',
 	      null,
+	      'Basic range with tooltips always visible'
+	    ),
+	    React.createElement(Slider, { range: true, tooltipAlwaysVisible: true, defaultValue: [0, 20], onChange: log })
+	  ),
+	  React.createElement(
+	    'div',
+	    { style: style },
+	    React.createElement(
+	      'p',
+	      null,
 	      'Basic Range，`step=20` '
 	    ),
 	    React.createElement(Slider, { range: true, step: 20, defaultValue: [20, 40], onBeforeChange: log })
