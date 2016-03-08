@@ -70,6 +70,10 @@ ReactDOM.render(
       <Slider range allowCross={false} defaultValue={[0, 20]} onChange={log} />
     </div>
     <div style={style}>
+      <p>Basic range with tooltips always visible</p>
+      <Slider range tooltipAlwaysVisible={true} defaultValue={[0, 20]} onChange={log} />
+    </div>
+    <div style={style}>
       <p>Basic Range，`step=20` </p>
       <Slider range step={20} defaultValue={[20, 40]} onBeforeChange={log} />
     </div>

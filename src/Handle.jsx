@@ -6,7 +6,7 @@ export default class Handle extends React.Component {
     super(props);
 
     this.state = {
-      isTooltipVisible: false,
+      isTooltipVisible: this.props.tooltipAlwaysVisible || false,
     };
   }
 
@@ -18,7 +18,7 @@ export default class Handle extends React.Component {
 
   hideTooltip() {
     this.setState({
-      isTooltipVisible: false,
+      isTooltipVisible: this.props.tooltipAlwaysVisible || false,
     });
   }
 
@@ -58,4 +58,5 @@ Handle.propTypes = {
   value: React.PropTypes.number,
   dragging: React.PropTypes.bool,
   noTip: React.PropTypes.bool,
+  tooltipAlwaysVisible: React.PropTypes.bool,
 };
