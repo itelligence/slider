@@ -19748,23 +19748,23 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _objectAssign2 = __webpack_require__(183);
+	var _objectAssign2 = __webpack_require__(182);
 	
 	var _objectAssign3 = _interopRequireDefault(_objectAssign2);
 	
-	var _Track = __webpack_require__(187);
+	var _Track = __webpack_require__(186);
 	
 	var _Track2 = _interopRequireDefault(_Track);
 	
-	var _Handle = __webpack_require__(188);
+	var _Handle = __webpack_require__(187);
 	
 	var _Handle2 = _interopRequireDefault(_Handle);
 	
-	var _Dots = __webpack_require__(216);
+	var _Dots = __webpack_require__(215);
 	
 	var _Dots2 = _interopRequireDefault(_Dots);
 	
-	var _Marks = __webpack_require__(217);
+	var _Marks = __webpack_require__(216);
 	
 	var _Marks2 = _interopRequireDefault(_Marks);
 	
@@ -20159,6 +20159,7 @@
 	      var tipTransitionName = _props3.tipTransitionName;
 	      var tipFormatter = _props3.tipFormatter;
 	      var children = _props3.children;
+	      var tooltipAlwaysVisible = _props3.tooltipAlwaysVisible;
 	
 	      var upperOffset = this.calcOffset(upperBound);
 	      var lowerOffset = this.calcOffset(lowerBound);
@@ -20168,11 +20169,13 @@
 	
 	      var upper = _react2['default'].createElement(_Handle2['default'], { className: handleClassName,
 	        noTip: isNoTip, tipTransitionName: tipTransitionName, tipFormatter: tipFormatter,
+	        tooltipAlwaysVisible: tooltipAlwaysVisible,
 	        offset: upperOffset, value: upperBound, dragging: handle === 'upperBound' });
 	
 	      var lower = null;
 	      if (range) {
 	        lower = _react2['default'].createElement(_Handle2['default'], { className: handleClassName,
+	          tooltipAlwaysVisible: tooltipAlwaysVisible,
 	          noTip: isNoTip, tipTransitionName: tipTransitionName, tipFormatter: tipFormatter,
 	          offset: lowerOffset, value: lowerBound, dragging: handle === 'lowerBound' });
 	      }
@@ -20261,14 +20264,14 @@
 	  KeyCode: __webpack_require__(170),
 	  PureRenderMixin: __webpack_require__(171),
 	  shallowEqual: __webpack_require__(172),
-	  createChainedFunction: __webpack_require__(178),
+	  createChainedFunction: __webpack_require__(177),
 	  Dom: {
-	    addEventListener: __webpack_require__(179),
-	    contains: __webpack_require__(184)
+	    addEventListener: __webpack_require__(178),
+	    contains: __webpack_require__(183)
 	  },
 	  Children: {
-	    toArray: __webpack_require__(185),
-	    mapSelf: __webpack_require__(186)
+	    toArray: __webpack_require__(184),
+	    mapSelf: __webpack_require__(185)
 	  }
 	};
 
@@ -21004,17 +21007,7 @@
 
 	'use strict';
 	
-	var shallowEqual = __webpack_require__(173);
-	
-	module.exports = shallowEqual;
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var fetchKeys = __webpack_require__(174);
+	var fetchKeys = __webpack_require__(173);
 	
 	module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 	
@@ -21062,7 +21055,7 @@
 	};
 
 /***/ },
-/* 174 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21073,9 +21066,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var getNative = __webpack_require__(175),
-	    isArguments = __webpack_require__(176),
-	    isArray = __webpack_require__(177);
+	var getNative = __webpack_require__(174),
+	    isArguments = __webpack_require__(175),
+	    isArray = __webpack_require__(176);
 	
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -21304,7 +21297,7 @@
 
 
 /***/ },
-/* 175 */
+/* 174 */
 /***/ function(module, exports) {
 
 	/**
@@ -21447,11 +21440,11 @@
 
 
 /***/ },
-/* 176 */
+/* 175 */
 /***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {/**
-	 * lodash 3.0.5 (Custom Build) <https://lodash.com/>
+	/**
+	 * lodash 3.0.8 (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
 	 * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
 	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
@@ -21468,7 +21461,7 @@
 	    genTag = '[object GeneratorFunction]';
 	
 	/** Used for built-in method references. */
-	var objectProto = global.Object.prototype;
+	var objectProto = Object.prototype;
 	
 	/** Used to check objects for own properties. */
 	var hasOwnProperty = objectProto.hasOwnProperty;
@@ -21536,7 +21529,6 @@
 	 *
 	 * @static
 	 * @memberOf _
-	 * @type Function
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
@@ -21555,8 +21547,7 @@
 	 * // => false
 	 */
 	function isArrayLike(value) {
-	  return value != null &&
-	    !(typeof value == 'function' && isFunction(value)) && isLength(getLength(value));
+	  return value != null && isLength(getLength(value)) && !isFunction(value);
 	}
 	
 	/**
@@ -21565,7 +21556,6 @@
 	 *
 	 * @static
 	 * @memberOf _
-	 * @type Function
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is an array-like object, else `false`.
@@ -21605,8 +21595,8 @@
 	 */
 	function isFunction(value) {
 	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in Safari 8 which returns 'object' for typed array constructors, and
-	  // PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
+	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
 	  var tag = isObject(value) ? objectToString.call(value) : '';
 	  return tag == funcTag || tag == genTag;
 	}
@@ -21636,7 +21626,8 @@
 	 * // => false
 	 */
 	function isLength(value) {
-	  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+	  return typeof value == 'number' &&
+	    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
 	}
 	
 	/**
@@ -21663,8 +21654,6 @@
 	 * // => false
 	 */
 	function isObject(value) {
-	  // Avoid a V8 JIT bug in Chrome 19-20.
-	  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
 	  var type = typeof value;
 	  return !!value && (type == 'object' || type == 'function');
 	}
@@ -21697,11 +21686,10 @@
 	}
 	
 	module.exports = isArguments;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
 
 /***/ },
-/* 177 */
+/* 176 */
 /***/ function(module, exports) {
 
 	/**
@@ -21887,7 +21875,7 @@
 
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports) {
 
 	/**
@@ -21914,7 +21902,7 @@
 	module.exports = createChainedFunction;
 
 /***/ },
-/* 179 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21926,7 +21914,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _addDomEventListener = __webpack_require__(180);
+	var _addDomEventListener = __webpack_require__(179);
 	
 	var _addDomEventListener2 = _interopRequireDefault(_addDomEventListener);
 	
@@ -21945,7 +21933,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 180 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21957,7 +21945,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _EventObject = __webpack_require__(181);
+	var _EventObject = __webpack_require__(180);
 	
 	var _EventObject2 = _interopRequireDefault(_EventObject);
 	
@@ -21987,7 +21975,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 181 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22004,11 +21992,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _EventBaseObject = __webpack_require__(182);
+	var _EventBaseObject = __webpack_require__(181);
 	
 	var _EventBaseObject2 = _interopRequireDefault(_EventBaseObject);
 	
-	var _objectAssign = __webpack_require__(183);
+	var _objectAssign = __webpack_require__(182);
 	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
@@ -22270,7 +22258,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 182 */
+/* 181 */
 /***/ function(module, exports) {
 
 	/**
@@ -22338,7 +22326,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 183 */
+/* 182 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -22383,7 +22371,7 @@
 
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22401,7 +22389,7 @@
 	};
 
 /***/ },
-/* 185 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22417,7 +22405,7 @@
 	};
 
 /***/ },
-/* 186 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22434,7 +22422,7 @@
 	};
 
 /***/ },
-/* 187 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22467,7 +22455,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 188 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22490,7 +22478,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _rcTooltip = __webpack_require__(189);
+	var _rcTooltip = __webpack_require__(188);
 	
 	var _rcTooltip2 = _interopRequireDefault(_rcTooltip);
 	
@@ -22503,7 +22491,7 @@
 	    _get(Object.getPrototypeOf(Handle.prototype), 'constructor', this).call(this, props);
 	
 	    this.state = {
-	      isTooltipVisible: false
+	      isTooltipVisible: this.props.tooltipAlwaysVisible || false
 	    };
 	  }
 	
@@ -22518,7 +22506,7 @@
 	    key: 'hideTooltip',
 	    value: function hideTooltip() {
 	      this.setState({
-	        isTooltipVisible: false
+	        isTooltipVisible: this.props.tooltipAlwaysVisible || false
 	      });
 	    }
 	  }, {
@@ -22579,15 +22567,15 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 189 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(190);
+	module.exports = __webpack_require__(189);
 
 /***/ },
-/* 190 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22606,9 +22594,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _placements = __webpack_require__(191);
+	var _placements = __webpack_require__(190);
 	
-	var _rcTrigger = __webpack_require__(192);
+	var _rcTrigger = __webpack_require__(191);
 	
 	var _rcTrigger2 = _interopRequireDefault(_rcTrigger);
 	
@@ -22727,7 +22715,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 191 */
+/* 190 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22746,31 +22734,31 @@
 	  left: {
 	    points: ['cr', 'cl'],
 	    overflow: autoAdjustOverflow,
-	    offset: [-3, 0],
+	    offset: [-4, 0],
 	    targetOffset: targetOffset
 	  },
 	  right: {
 	    points: ['cl', 'cr'],
 	    overflow: autoAdjustOverflow,
-	    offset: [3, 0],
+	    offset: [4, 0],
 	    targetOffset: targetOffset
 	  },
 	  top: {
 	    points: ['bc', 'tc'],
 	    overflow: autoAdjustOverflow,
-	    offset: [0, -3],
+	    offset: [0, -4],
 	    targetOffset: targetOffset
 	  },
 	  bottom: {
 	    points: ['tc', 'bc'],
 	    overflow: autoAdjustOverflow,
-	    offset: [0, 3],
+	    offset: [0, 4],
 	    targetOffset: targetOffset
 	  },
 	  topLeft: {
 	    points: ['bl', 'tl'],
 	    overflow: autoAdjustOverflow,
-	    offset: [0, -3],
+	    offset: [0, -4],
 	    targetOffset: targetOffset
 	  },
 	  leftTop: {
@@ -22782,37 +22770,37 @@
 	  topRight: {
 	    points: ['br', 'tr'],
 	    overflow: autoAdjustOverflow,
-	    offset: [0, -3],
+	    offset: [0, -4],
 	    targetOffset: targetOffset
 	  },
 	  rightTop: {
 	    points: ['tl', 'tr'],
 	    overflow: autoAdjustOverflow,
-	    offset: [3, 0],
+	    offset: [4, 0],
 	    targetOffset: targetOffset
 	  },
 	  bottomRight: {
 	    points: ['tr', 'br'],
 	    overflow: autoAdjustOverflow,
-	    offset: [0, 3],
+	    offset: [0, 4],
 	    targetOffset: targetOffset
 	  },
 	  rightBottom: {
 	    points: ['bl', 'br'],
 	    overflow: autoAdjustOverflow,
-	    offset: [3, 0],
+	    offset: [4, 0],
 	    targetOffset: targetOffset
 	  },
 	  bottomLeft: {
 	    points: ['tl', 'bl'],
 	    overflow: autoAdjustOverflow,
-	    offset: [0, 3],
+	    offset: [0, 4],
 	    targetOffset: targetOffset
 	  },
 	  leftBottom: {
 	    points: ['br', 'bl'],
 	    overflow: autoAdjustOverflow,
-	    offset: [-3, 0],
+	    offset: [-4, 0],
 	    targetOffset: targetOffset
 	  }
 	};
@@ -22821,15 +22809,15 @@
 	exports['default'] = placements;
 
 /***/ },
-/* 192 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(193);
+	module.exports = __webpack_require__(192);
 
 /***/ },
-/* 193 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22852,11 +22840,11 @@
 	
 	var _rcUtil = __webpack_require__(164);
 	
-	var _Popup = __webpack_require__(194);
+	var _Popup = __webpack_require__(193);
 	
 	var _Popup2 = _interopRequireDefault(_Popup);
 	
-	var _utils = __webpack_require__(215);
+	var _utils = __webpack_require__(214);
 	
 	function noop() {}
 	
@@ -22871,6 +22859,8 @@
 	
 	  propTypes: {
 	    action: _react.PropTypes.any,
+	    showAction: _react.PropTypes.any,
+	    hideAction: _react.PropTypes.any,
 	    getPopupClassNameFromAlign: _react.PropTypes.any,
 	    onPopupVisibleChange: _react.PropTypes.func,
 	    afterPopupVisibleChange: _react.PropTypes.func,
@@ -22883,6 +22873,8 @@
 	    popupAnimation: _react.PropTypes.any,
 	    mouseEnterDelay: _react.PropTypes.number,
 	    mouseLeaveDelay: _react.PropTypes.number,
+	    focusDelay: _react.PropTypes.number,
+	    blurDelay: _react.PropTypes.number,
 	    getPopupContainer: _react.PropTypes.func,
 	    destroyPopupOnHide: _react.PropTypes.bool,
 	    popupAlign: _react.PropTypes.object,
@@ -22898,11 +22890,15 @@
 	      popupClassName: '',
 	      mouseEnterDelay: 0,
 	      mouseLeaveDelay: 0.1,
+	      focusDelay: 0,
+	      blurDelay: 0.15,
 	      popupStyle: {},
 	      destroyPopupOnHide: false,
 	      popupAlign: {},
 	      defaultPopupVisible: false,
-	      action: []
+	      action: [],
+	      showAction: [],
+	      hideAction: []
 	    };
 	  },
 	
@@ -22984,10 +22980,7 @@
 	      }
 	      this.popupContainer = null;
 	    }
-	    if (this.delayTimer) {
-	      clearTimeout(this.delayTimer);
-	      this.delayTimer = null;
-	    }
+	    this.clearDelayTimer();
 	    if (this.clickOutsideHandler) {
 	      this.clickOutsideHandler.remove();
 	      this.touchOutsideHandler.remove();
@@ -23006,7 +22999,7 @@
 	
 	  onFocus: function onFocus() {
 	    this.focusTime = Date.now();
-	    this.setPopupVisible(true);
+	    this.delaySetPopupVisible(true, this.props.focusDelay);
 	  },
 	
 	  onMouseDown: function onMouseDown() {
@@ -23018,7 +23011,7 @@
 	  },
 	
 	  onBlur: function onBlur() {
-	    this.setPopupVisible(false);
+	    this.delaySetPopupVisible(false, this.props.blurDelay);
 	  },
 	
 	  onClick: function onClick(event) {
@@ -23040,7 +23033,10 @@
 	    this.preClickTime = 0;
 	    this.preTouchTime = 0;
 	    event.preventDefault();
-	    this.setPopupVisible(!this.state.popupVisible);
+	    var nextVisible = !this.state.popupVisible;
+	    if (this.isClickToHide() && !nextVisible || nextVisible && this.isClickToShow()) {
+	      this.setPopupVisible(!this.state.popupVisible);
+	    }
 	  },
 	
 	  onDocumentClick: function onDocumentClick(event) {
@@ -23125,6 +23121,7 @@
 	  },
 	
 	  setPopupVisible: function setPopupVisible(popupVisible) {
+	    this.clearDelayTimer();
 	    if (this.state.popupVisible !== popupVisible) {
 	      if (!('popupVisible' in this.props)) {
 	        this.setState({
@@ -23139,18 +23136,70 @@
 	    var _this2 = this;
 	
 	    var delay = delayS * 1000;
-	    if (this.delayTimer) {
-	      clearTimeout(this.delayTimer);
-	      this.delayTimer = null;
-	    }
+	    this.clearDelayTimer();
 	    if (delay) {
 	      this.delayTimer = setTimeout(function () {
 	        _this2.setPopupVisible(visible);
-	        _this2.delayTimer = null;
+	        _this2.clearDelayTimer();
 	      }, delay);
 	    } else {
 	      this.setPopupVisible(visible);
 	    }
+	  },
+	
+	  clearDelayTimer: function clearDelayTimer() {
+	    if (this.delayTimer) {
+	      clearTimeout(this.delayTimer);
+	      this.delayTimer = null;
+	    }
+	  },
+	
+	  isClickToShow: function isClickToShow() {
+	    var _props = this.props;
+	    var action = _props.action;
+	    var showAction = _props.showAction;
+	
+	    return action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1;
+	  },
+	
+	  isClickToHide: function isClickToHide() {
+	    var _props2 = this.props;
+	    var action = _props2.action;
+	    var hideAction = _props2.hideAction;
+	
+	    return action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1;
+	  },
+	
+	  isMouseEnterToShow: function isMouseEnterToShow() {
+	    var _props3 = this.props;
+	    var action = _props3.action;
+	    var showAction = _props3.showAction;
+	
+	    return action.indexOf('hover') !== -1 || showAction.indexOf('mouseEnter') !== -1;
+	  },
+	
+	  isMouseLeaveToHide: function isMouseLeaveToHide() {
+	    var _props4 = this.props;
+	    var action = _props4.action;
+	    var hideAction = _props4.hideAction;
+	
+	    return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseLeave') !== -1;
+	  },
+	
+	  isFocusToShow: function isFocusToShow() {
+	    var _props5 = this.props;
+	    var action = _props5.action;
+	    var showAction = _props5.showAction;
+	
+	    return action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1;
+	  },
+	
+	  isBlurToHide: function isBlurToHide() {
+	    var _props6 = this.props;
+	    var action = _props6.action;
+	    var hideAction = _props6.hideAction;
+	
+	    return action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1;
 	  },
 	
 	  render: function render() {
@@ -23160,18 +23209,22 @@
 	    var child = _react2['default'].Children.only(children);
 	    var childProps = child.props || {};
 	    var newChildProps = {};
-	    var trigger = props.action;
-	    if (trigger.indexOf('click') !== -1) {
+	
+	    if (this.isClickToHide() || this.isClickToShow()) {
 	      newChildProps.onClick = (0, _rcUtil.createChainedFunction)(this.onClick, childProps.onClick);
 	      newChildProps.onMouseDown = (0, _rcUtil.createChainedFunction)(this.onMouseDown, childProps.onMouseDown);
 	      newChildProps.onTouchStart = (0, _rcUtil.createChainedFunction)(this.onTouchStart, childProps.onTouchStart);
 	    }
-	    if (trigger.indexOf('hover') !== -1) {
+	    if (this.isMouseEnterToShow()) {
 	      newChildProps.onMouseEnter = (0, _rcUtil.createChainedFunction)(this.onMouseEnter, childProps.onMouseEnter);
+	    }
+	    if (this.isMouseLeaveToHide()) {
 	      newChildProps.onMouseLeave = (0, _rcUtil.createChainedFunction)(this.onMouseLeave, childProps.onMouseLeave);
 	    }
-	    if (trigger.indexOf('focus') !== -1) {
+	    if (this.isFocusToShow()) {
 	      newChildProps.onFocus = (0, _rcUtil.createChainedFunction)(this.onFocus, childProps.onFocus);
+	    }
+	    if (this.isBlurToHide()) {
 	      newChildProps.onBlur = (0, _rcUtil.createChainedFunction)(this.onBlur, childProps.onBlur);
 	    }
 	
@@ -23195,7 +23248,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 194 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23214,15 +23267,15 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _rcAlign = __webpack_require__(195);
+	var _rcAlign = __webpack_require__(194);
 	
 	var _rcAlign2 = _interopRequireDefault(_rcAlign);
 	
-	var _rcAnimate = __webpack_require__(206);
+	var _rcAnimate = __webpack_require__(205);
 	
 	var _rcAnimate2 = _interopRequireDefault(_rcAnimate);
 	
-	var _PopupInner = __webpack_require__(214);
+	var _PopupInner = __webpack_require__(213);
 	
 	var _PopupInner2 = _interopRequireDefault(_PopupInner);
 	
@@ -23355,7 +23408,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 195 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// export this package's api
@@ -23367,7 +23420,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _Align = __webpack_require__(196);
+	var _Align = __webpack_require__(195);
 	
 	var _Align2 = _interopRequireDefault(_Align);
 	
@@ -23375,7 +23428,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 196 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23394,13 +23447,13 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _domAlign = __webpack_require__(197);
+	var _domAlign = __webpack_require__(196);
 	
 	var _domAlign2 = _interopRequireDefault(_domAlign);
 	
 	var _rcUtil = __webpack_require__(164);
 	
-	var _isWindow = __webpack_require__(205);
+	var _isWindow = __webpack_require__(204);
 	
 	var _isWindow2 = _interopRequireDefault(_isWindow);
 	
@@ -23532,7 +23585,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 197 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23548,27 +23601,27 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(198);
+	var _utils = __webpack_require__(197);
 	
 	var _utils2 = _interopRequireDefault(_utils);
 	
-	var _getOffsetParent = __webpack_require__(199);
+	var _getOffsetParent = __webpack_require__(198);
 	
 	var _getOffsetParent2 = _interopRequireDefault(_getOffsetParent);
 	
-	var _getVisibleRectForElement = __webpack_require__(200);
+	var _getVisibleRectForElement = __webpack_require__(199);
 	
 	var _getVisibleRectForElement2 = _interopRequireDefault(_getVisibleRectForElement);
 	
-	var _adjustForViewport = __webpack_require__(201);
+	var _adjustForViewport = __webpack_require__(200);
 	
 	var _adjustForViewport2 = _interopRequireDefault(_adjustForViewport);
 	
-	var _getRegion = __webpack_require__(202);
+	var _getRegion = __webpack_require__(201);
 	
 	var _getRegion2 = _interopRequireDefault(_getRegion);
 	
-	var _getElFuturePos = __webpack_require__(203);
+	var _getElFuturePos = __webpack_require__(202);
 	
 	var _getElFuturePos2 = _interopRequireDefault(_getElFuturePos);
 	
@@ -23735,7 +23788,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 198 */
+/* 197 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24233,7 +24286,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 199 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24244,7 +24297,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(198);
+	var _utils = __webpack_require__(197);
 	
 	var _utils2 = _interopRequireDefault(_utils);
 	
@@ -24291,7 +24344,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 200 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24302,11 +24355,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(198);
+	var _utils = __webpack_require__(197);
 	
 	var _utils2 = _interopRequireDefault(_utils);
 	
-	var _getOffsetParent = __webpack_require__(199);
+	var _getOffsetParent = __webpack_require__(198);
 	
 	var _getOffsetParent2 = _interopRequireDefault(_getOffsetParent);
 	
@@ -24372,7 +24425,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 201 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24383,7 +24436,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(198);
+	var _utils = __webpack_require__(197);
 	
 	var _utils2 = _interopRequireDefault(_utils);
 	
@@ -24432,7 +24485,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 202 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24443,7 +24496,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(198);
+	var _utils = __webpack_require__(197);
 	
 	var _utils2 = _interopRequireDefault(_utils);
 	
@@ -24473,7 +24526,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 203 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24484,7 +24537,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _getAlignOffset = __webpack_require__(204);
+	var _getAlignOffset = __webpack_require__(203);
 	
 	var _getAlignOffset2 = _interopRequireDefault(_getAlignOffset);
 	
@@ -24514,7 +24567,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 204 */
+/* 203 */
 /***/ function(module, exports) {
 
 	/**
@@ -24559,7 +24612,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 205 */
+/* 204 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24578,16 +24631,16 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 206 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// export this package's api
 	'use strict';
 	
-	module.exports = __webpack_require__(207);
+	module.exports = __webpack_require__(206);
 
 /***/ },
-/* 207 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24604,13 +24657,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ChildrenUtils = __webpack_require__(208);
+	var _ChildrenUtils = __webpack_require__(207);
 	
-	var _AnimateChild = __webpack_require__(209);
+	var _AnimateChild = __webpack_require__(208);
 	
 	var _AnimateChild2 = _interopRequireDefault(_AnimateChild);
 	
-	var _util = __webpack_require__(213);
+	var _util = __webpack_require__(212);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -24917,7 +24970,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 208 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25035,7 +25088,7 @@
 	}
 
 /***/ },
-/* 209 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25054,11 +25107,11 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _cssAnimation = __webpack_require__(210);
+	var _cssAnimation = __webpack_require__(209);
 	
 	var _cssAnimation2 = _interopRequireDefault(_cssAnimation);
 	
-	var _util = __webpack_require__(213);
+	var _util = __webpack_require__(212);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -25138,13 +25191,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 210 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var Event = __webpack_require__(211);
-	var Css = __webpack_require__(212);
+	var Event = __webpack_require__(210);
+	var Css = __webpack_require__(211);
 	var isCssAnimationSupported = Event.endEvents.length !== 0;
 	
 	function getDuration(node, name) {
@@ -25296,7 +25349,7 @@
 	module.exports = cssAnimation;
 
 /***/ },
-/* 211 */
+/* 210 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25384,7 +25437,7 @@
 	module.exports = TransitionEvents;
 
 /***/ },
-/* 212 */
+/* 211 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25415,7 +25468,7 @@
 	};
 
 /***/ },
-/* 213 */
+/* 212 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25448,7 +25501,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 214 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25494,7 +25547,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 215 */
+/* 214 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25529,7 +25582,7 @@
 	}
 
 /***/ },
-/* 216 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25596,7 +25649,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 217 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25632,7 +25685,9 @@
 	  var markWidth = unit * 0.9;
 	
 	  var range = max - min;
-	  var elements = marksKeys.map(parseFloat).map(function (point) {
+	  var elements = marksKeys.map(parseFloat).sort(function (a, b) {
+	    return a - b;
+	  }).map(function (point) {
 	    var _classNames;
 	
 	    var isActived = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;
